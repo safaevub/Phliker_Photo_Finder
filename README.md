@@ -14,7 +14,5 @@ In this project,you can see implementation of:
 - injunction of HTML code to html file using JQuery
 - using Array of Objects in JavaScript
 - Bootstrap Modal
-- CSS file in which I have decorated web page using classes and id of each element
-- HTML file in which you can find how web page is structured using divs, img
 - taking content of JSON data in JS
 
