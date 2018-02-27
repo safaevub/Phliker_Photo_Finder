@@ -1,0 +1,170 @@
+
+.phliker_top{
+  
+  font-family: Verdana;
+  color: white;
+}
+
+
+.topnav {
+  overflow: hidden;
+  background-color: #19BCFF;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 24px;
+  font-family: Verdana;
+}
+
+
+
+.topnav .search-container {
+  float: right;
+}
+
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 10px;
+  font-size: 17px;
+  border: none;
+  border-radius: 2px;
+  font-family: Verdana;
+  
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 6px;
+  margin-top: 10px;
+  margin-right: 16px;
+ background-color: #D3D3D3;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+  font-family: Verdana;
+  
+}
+
+.topnav .search-container button:hover {
+  background: #ccc;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav .search-container {
+    float: none;
+  }
+
+.topnav a, .topnav input[type=text], .topnav .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+
+.topnav input[type=text] {
+    border: 1px solid #ccc;  
+  }
+}
+
+#srch_big{
+  text-align: center;
+   margin:  auto;
+   padding: auto;
+  
+}
+
+#search_images {
+   margin: 400px auto;
+   padding: auto;
+   text-align: center;
+}
+
+#search_images input[type=text]{
+  width: 400px;
+  height: 40px;
+  font-size: 17px;
+  margin: auto;
+   padding: auto;
+   text-align: center;
+   border-radius: 5px;
+   font-family: Verdana;
+}
+
+#search_images button{
+  width: 72px;
+  height: 42px;
+  font-size: 17px;
+  text-align: center;
+  border-radius: 5px;
+  background-color: #D3D3D3;
+  margin: auto;
+  padding: auto;
+  font-family: Verdana;
+  text-decoration-color: white;
+  border: none;
+  }
+
+ul{
+  text-align: left;
+}
+#myModal{
+  width: auto;
+  height: auto;
+}
+.imgPreview{
+  align-content:center;
+  width: 570px;
+  height: 500px; 
+}
+.modal-dialog{
+  width: auto;
+  height: auto;
+  opacity: 0.9;
+  background-color: #19BCFF;
+  border-radius: 10px;
+
+}
+
+#srch_images img{
+
+  border-radius: 6px;
+  margin: 4px 4px;
+  
+}
+
+#srch_images {
+   background-color: #D3D3D3;
+
+}
+
+#prev{
+  float: left;
+ background-color: #D3D3D3;
+ width: 80px;
+ height: 40px;
+ text-align: center;
+ text-orientation: center;
+}
+
+#next{
+  float: right;
+  background-color: #D3D3D3;
+  width: 80px;
+ height: 40px;
+ text-align: center;
+ text-orientation: center;
+}
+
+.ul_list li{
+ height: 40px;
+font-family: Verdana;
+}
