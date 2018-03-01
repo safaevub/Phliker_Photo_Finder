@@ -37,7 +37,7 @@ $(document).ready(function (){
         //loop to create image for html with injunction of source of img
         //by the way saving id and source of image in array of Objects           
              for (var i=0; i< photoInfo.photo.length; i++){
-            img += '<img class="imgs" id="'+ photoInfo.photo[i].id  +'"'+ ' width ="300px" height="300px" src="http://farm'+photoInfo.photo[i].farm+'.staticflickr.com/'+photoInfo.photo[i].server +'/'+photoInfo.photo[i].id+'_'+photoInfo.photo[i].secret+'_z.jpg'+'"/>';           
+            img += '<img class="imgs" id="'+ photoInfo.photo[i].id  +'"'+ 'src="http://farm'+photoInfo.photo[i].farm+'.staticflickr.com/'+photoInfo.photo[i].server +'/'+photoInfo.photo[i].id+'_'+photoInfo.photo[i].secret+'_m.jpg'+'"/>';           
              
             arrayOfimages.push({
                     id: photoInfo.photo[i].id,
@@ -51,6 +51,7 @@ $(document).ready(function (){
              content += "</div>";       
         //replacing content of #srch_big div by our content            
           $('#srch_big').html(content);
+          $('#srch_big').css("background-color","D3D3D3");
         //handler if one of images displayed before will be clicked 
           $('.imgs').on('click',function(){
         // declaring itemIndex variable is to find out which image is clicked in arrayOfObjects    
@@ -78,31 +79,38 @@ $(document).ready(function (){
         //after everthing showing modal             
                     $('#myModal').modal('show');
         // when next button in modal is clicked handler
-                    $('#next').on('click',function(){
-        //checking whether image is in the array range              
-                      if ((itemIndex > 0) && (itemIndex < arrayOfimages.length)){
+                     $('#next').on('click',function(){
+      //checking whether image is in the array range               
+                      if(itemIndex === arrayOfimages.length - 1){
+                        $('#next').css("clickable","false");
+                         window.alert("This is last photo, no next !");
+                      }
+                       if (itemIndex !== arrayOfimages.length - 1){
         //placing image source to modal-body img source                  
                         $(".imgPreview").attr('src', arrayOfimages[++itemIndex].image);
         // calling findImageInfo function to identify Title, Country, Region, Locality              
         //placing all taken info to Modal footer                  
                            findImageInfo(flickrKey, arrayOfimages[itemIndex].id);                           
-                        }else{
-                          window.alert("This is last photo !");
                         }
-                   
+                         
+                        
+                                        
                     });
         // previous button in modal handler
                     $('#prev').on('click',function(){
         //checking whether image is in the array range             
-                      if ((itemIndex > 0) && (itemIndex < arrayOfimages.length)){
-        //placing image source to modal-body img source                   
+                     if (itemIndex === 0){
+                         $('#prev').css("clickable","false");
+                        window.alert("This is  very first photo, no previous !");
+                      } 
+                       if(itemIndex !== 0){
+      //placing image source to modal-body img source                    
                           $(".imgPreview").attr('src', arrayOfimages[--itemIndex].image);
-        // calling findImageInfo function to identify Title, Country, Region, Locality              
-        //placing all taken info to Modal footer                  
+      // calling findImageInfo function to identify Title, Country, Region, Locality              
+      //placing all taken info to Modal footer                    
                            findImageInfo(flickrKey, arrayOfimages[itemIndex].id);
-                  }else{
-                    window.alert("This is  first photo !");
-                  }
+                          
+                          }
 
                     });
                                 });                                                      
@@ -159,13 +167,14 @@ $(document).ready(function (){
                   dataType: 'json',
                   success: function (response) {
       // function to da if response is successful              
+          
                     var photoInfo = response.photos;
                     var img ="";
                     var content = "";
       //loop to create image for html with injunction of source of img
       //by the way saving id and source of image in array of Objects             
              for (var i=0; i< photoInfo.photo.length; i++){
-            img += '<img class="imgs" id="'+ photoInfo.photo[i].id  +'"'+ ' width ="300px" height="300px" src="http://farm'+photoInfo.photo[i].farm+'.staticflickr.com/'+photoInfo.photo[i].server +'/'+photoInfo.photo[i].id+'_'+photoInfo.photo[i].secret+'_z.jpg'+'"/>';           
+            img += '<img class="imgs" id="'+ photoInfo.photo[i].id  +'"'+ 'src="http://farm'+photoInfo.photo[i].farm+'.staticflickr.com/'+photoInfo.photo[i].server +'/'+photoInfo.photo[i].id+'_'+photoInfo.photo[i].secret+'_m.jpg'+'"/>';           
              
             arrayOfimages.push({
                     id: photoInfo.photo[i].id,
@@ -179,6 +188,7 @@ $(document).ready(function (){
              content += "</div>";       
       //replacing content of #srch_big div by our content              
           $('#srch_big').html(content);
+          $('#srch_big').css("background-color","D3D3D3")
       //handler if one of images displayed before will be clicked    
           $('.imgs').on('click',function(){
       // declaring itemIndex variable is to find out which image is clicked in arrayOfObjects
@@ -209,33 +219,37 @@ $(document).ready(function (){
       // when next button in modal is clicked handler  
                     $('#next').on('click',function(){
       //checking whether image is in the array range               
-                      if ((itemIndex > 0) && (itemIndex < arrayOfimages.length)){
-      //placing image source to modal-body img source                    
-                      $(".imgPreview").attr('src', arrayOfimages[++itemIndex].image);
-      // calling findImageInfo function to identify Title, Country, Region, Locality              
-      //placing all taken info to Modal footer                     
-                           findImageInfo(flickrKey, arrayOfimages[itemIndex].id);
-                           
-                         }else{
-      //alerting that the photo is last 
-                            window.alert("This is last photo !");
-                          }
-                   
+                      if(itemIndex === arrayOfimages.length - 1){
+                        $('#next').css("clickable","false");
+                         window.alert("This is last photo, no next !");
+                      }
+                       if (itemIndex !== arrayOfimages.length - 1){
+        //placing image source to modal-body img source                  
+                        $(".imgPreview").attr('src', arrayOfimages[++itemIndex].image);
+        // calling findImageInfo function to identify Title, Country, Region, Locality              
+        //placing all taken info to Modal footer                  
+                           findImageInfo(flickrKey, arrayOfimages[itemIndex].id);                           
+                        }
+                         
+                        
+                                        
                     });
       // when previous button in modal is clicked handler
                     $('#prev').on('click',function(){
       //checking whether image is in the array range                 
-                      if ((itemIndex > 0) && (itemIndex < arrayOfimages.length)){
+                      if (itemIndex === 0){
+                         $('#prev').css("clickable","false");
+                        window.alert("This is  very first photo, no previous !");
+                      } 
+
+                      if(itemIndex !== 0){
       //placing image source to modal-body img source                    
                           $(".imgPreview").attr('src', arrayOfimages[--itemIndex].image);
       // calling findImageInfo function to identify Title, Country, Region, Locality              
       //placing all taken info to Modal footer                    
                            findImageInfo(flickrKey, arrayOfimages[itemIndex].id);
                           
-                           }else{
-      //alerting that the photo is first                       
-                              window.alert("This is  first photo !");
-                             }
+                          }
 
                     });
                                 });                                                      
@@ -273,7 +287,7 @@ function findImageInfo (key, ids){
                   console.log(response1);
                  
       // checking existance of property title in response         
-                if(response1.photo.title !== undefined){
+                if(response1.photo.title !== undefined ){
       // assigning Title to image_tit variable
                    image_tit += response1.photo.title._content;
       //placing Title text to modal Header
@@ -285,9 +299,9 @@ function findImageInfo (key, ids){
                          $('.modal-title').text(image_tit);
                     }
       // checking existance of property location in response                
-                if(response1.photo.location != undefined){
+                if(response1.photo.location !== undefined){
       // checking existance of property country in location in response              
-                  if(response1.photo.location.country != undefined){
+                  if(response1.photo.location.country !== undefined){
       //creating list item for html and assigning it to variable
                      clicked += "<li>Country: "+response1.photo.location.country._content+'</li>';
                   }else{
@@ -295,7 +309,7 @@ function findImageInfo (key, ids){
                        clicked+= "<li>Country: undefined</li>";
                     }
       // checking existance of property region in location in response   
-                    if(response1.photo.location.region != undefined){
+                    if(response1.photo.location.region !== undefined){
       //creating list item for html and assigning it to variable                
                         clicked += "<li>Region: "+response1.photo.location.region._content+"</li>"; 
                     }else{
@@ -303,7 +317,7 @@ function findImageInfo (key, ids){
                           clicked += "<li>Region: undefined</li>";
                     }  
       //checking existance of property locality in location in response                
-                     if(response1.photo.location.locality != undefined){
+                     if(response1.photo.location.locality !== undefined){
       //creating list item for html and assigning it to variable                    
                         clicked += "<li>Locality: "+response1.photo.location.locality._content+"</li>"; 
                     } else {
