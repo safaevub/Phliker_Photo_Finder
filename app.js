@@ -1,13 +1,22 @@
 $(document).ready(function (){
+       var flickrKey = "694e67e13fad33bb5b22b7af1d151c23";
+
         // Go button handler on top navigation bar
             $("#search_1").on("click", function(e){
-        //taking input of textfield #searchText_1
-              var searchText = $('#searchText_1').val();
+        //taking input of textfield #searchText_1 and checking if it is empty
+                if ($('#searchText_1').val() == "")
+                {
+                    alert ("Search field is empty !!!");
+                    return false;
+                } else{
+                  var searchText = $('#searchText_1').val();
+                }
+              
         //my flicker key to to get response
-              var flickrKey = "694e67e13fad33bb5b22b7af1d151c23";
+              
         //array below is array of objects which handles id and source of each image       
-               var n = 100;
-               var arrayOfimages = [];
+              var n = 100;
+              var arrayOfimages = [];
                   for (var i = 0; i < n; i++){
                       arrayOfimages.push(new Object());
                                              }               
@@ -21,12 +30,12 @@ $(document).ready(function (){
               }
 
         //url to get images from flickr  
-             var flickrApiUrl = "https://api.flickr.com/services/rest/?&method=flickr.photos.search&api_key="+flickrKey+"&tags="+searchText;
+              var flickrApiUrl = "https://api.flickr.com/services/rest/?&method=flickr.photos.search&api_key="+flickrKey+"&tags="+searchText;
         // print flickr api url in console for debugging
               console.log(flickrApiUrl);
         //ajax of JQuery for GET 
               $.ajax({
-                url: flickrApiUrl,
+                  url: flickrApiUrl,
                   type: 'GET',
                   data: data,
                   dataType: 'json',
@@ -34,6 +43,16 @@ $(document).ready(function (){
                     var photoInfo = response.photos;
                     var img ="";
                     var content = "";
+                   
+                   
+                    if(response.stat == "fail"){
+                      alert("Error occured ");
+                       return false;
+                                         }
+                   if(response.photos.total == 0){
+                    alert("No photos for that search ");
+                    return false;
+                   }
         //loop to create image for html with injunction of source of img
         //by the way saving id and source of image in array of Objects           
              for (var i=0; i< photoInfo.photo.length; i++){
@@ -81,7 +100,7 @@ $(document).ready(function (){
         // when next button in modal is clicked handler
                      $('#next').on('click',function(){
       //checking whether image is in the array range               
-                      if(itemIndex === arrayOfimages.length - 1){
+                    if(itemIndex === arrayOfimages.length - 1){
                         $('#next').css("clickable","false");
                          window.alert("This is last photo, no next !");
                       }
@@ -92,7 +111,7 @@ $(document).ready(function (){
         //placing all taken info to Modal footer                  
                            findImageInfo(flickrKey, arrayOfimages[itemIndex].id);                           
                         }
-                         
+                     
                         
                                         
                     });
@@ -123,6 +142,9 @@ $(document).ready(function (){
         },
         // error handler for response
                   error: function( error ){
+                
+                      
+                    
                     console.log('error: ', error);
                   },
         //message on completion of successful response         
@@ -135,10 +157,16 @@ $(document).ready(function (){
       });
       // Search button handler on body of main page      
               $("#search_2").on("click", function(e){
-      //taking input of textfield #searchText_2
-              var searchText = $('#searchText_2').val();
+      //taking input of textfield #searchText_2 and checking if it is empty
+                if ($('#searchText_2').val() == "")
+                {
+                    alert ("Search field is empty !!!");
+                    return (false);
+                } else{
+                  var searchText = $('#searchText_2').val();
+                }
       //my flicker key to to get response
-              var flickrKey = "694e67e13fad33bb5b22b7af1d151c23";
+              
       //array below is array of objects which handles id and source of each image              
                var n = 100;
                var arrayOfimages = [];
@@ -166,11 +194,23 @@ $(document).ready(function (){
                   data: data,
                   dataType: 'json',
                   success: function (response) {
-      // function to da if response is successful              
+
+                  
+      // function to do if response is successful              
           
                     var photoInfo = response.photos;
                     var img ="";
                     var content = "";
+                   
+                    
+                    if(response.stat == "fail"){
+                      alert("Error occured ");
+                       return false;
+                                         }
+                    if(response.photos.total == 0){
+                    alert("No photos for that search ");
+                    return false;
+                   }
       //loop to create image for html with injunction of source of img
       //by the way saving id and source of image in array of Objects             
              for (var i=0; i< photoInfo.photo.length; i++){
